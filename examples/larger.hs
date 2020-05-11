@@ -63,13 +63,13 @@ main = withEnvConfig $ \conf → do
 
   -- In a serious app, you'd probably want ekg-influxdb/ekg-carbon/ekg-statsd/ekg-prometheus-adapter/…
   -- But this web interface is pretty good in development
-  metrStore ← serverMetricStore <$> forkMetricsServer (metricsBind conf) (metricsPort conf)
-  metrWai ← registerWaiMetrics metrStore -- This one for the middleware
-  modMetr ← newMetricsWith metrStore -- And this one for the Magicbane app (for timed/gauge/etc. calls in your actions)
+  -- JJ metrStore ← serverMetricStore <$> forkMetricsServer (metricsBind conf) (metricsPort conf)
+  -- JJ metrWai ← registerWaiMetrics metrStore -- This one for the middleware
+  -- JJ modMetr ← newMetricsWith metrStore -- And this one for the Magicbane app (for timed/gauge/etc. calls in your actions)
 
   modHc ← newHttpClient
 
-  let ctx = (modLogg, modMetr, modHc, conf)
+  let ctx = (modLogg, {-modMetr,-} modHc, conf)
 
-  let waiMiddleware = metrics metrWai -- you can compose it with other middleware here
-  defWaiMain $ waiMiddleware $ magicbaneApp exampleAPI EmptyContext ctx $ hello :<|> splines :<|> req :<|> showErr
+  -- JJ let waiMiddleware = metrics metrWai -- you can compose it with other middleware here
+  defWaiMain {-$ waiMiddleware-} $ magicbaneApp exampleAPI EmptyContext ctx $ hello :<|> splines :<|> req :<|> showErr

@@ -8,7 +8,9 @@ module Magicbane.Logging (
 
 import           RIO
 import           System.Log.FastLogger
-import           System.Log.FastLogger as X (LogType(..), defaultBufSize)
+import           System.Log.FastLogger as X (LogType'(..), defaultBufSize)
+                                          -- changed from LogType in fast-logger-2.4.17
+                                          -- to LogType' in fast-logger-3.0.0
 
 type ModLogger = LogFunc
 
