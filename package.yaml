@@ -32,7 +32,7 @@ dependencies:
   - monad-logger
   - fast-logger
   - ekg-core
-  - ekg-wai
+  # JJ - ekg-wai
   - data-has
   - string-conversions
   - unordered-containers
@@ -47,7 +47,7 @@ dependencies:
   - raw-strings-qq
   - wai
   - wai-middleware-metrics
-  - wai-cli
+  # JJ - wai-cli
   # - servant
   - servant-server >= 0.12
   - network-uri

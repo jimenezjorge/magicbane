@@ -6,3 +6,4 @@ tmp/
 *.tix
 .stack-work/
 *.cabal
+stack.yaml.lock
